@@ -47,7 +47,7 @@ pub trait Todo {
     }
 
     #[storage_set("task")]
-    fn set_task(&self, id: &u16, task: &Task); //using array here 
+    fn set_task(&self, id: &u16, task: &Task); 
 
     #[view(getMutTasks)]
     #[storage_get_mut("task")]
