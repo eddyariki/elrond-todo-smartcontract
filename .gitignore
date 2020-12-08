@@ -5,3 +5,12 @@
 
 # The erdpy output
 output
+
+deploy.json
+elrond.workspace.json
+erdpy.data-storage.json
+simulate.json
+testnet.toml
+
+/testnet/
+.vscode
