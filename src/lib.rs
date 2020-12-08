@@ -28,12 +28,12 @@ pub trait Todo {
         Ok(())
     }
 
-    #[endpoint(getTaskContent)]
+    #[view(getTaskContent)]
     fn get_content(&self, id: &u16) -> Vec<u8> {
         let task: Task = self.get_task(&id);
         return task.content;
     }
-    #[endpoint(getTaskStatus)]
+    #[view(getTaskStatus)]
     fn get_task_status(&self, id:&u16) -> bool{
         let task: Task = self.get_task(&id);
         return task.completed;
