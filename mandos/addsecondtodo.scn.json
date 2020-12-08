@@ -1,0 +1,73 @@
+// {
+//     "name": "todo",
+//     "comment": "add new todo",
+//     "steps": [
+//         {
+//             "step":"externalSteps",
+//             "path": "addtodo.scen.json"
+//         },
+//         {
+//             "step": "scCall",
+//             "txId": "calling",
+//             "tx": {
+//                 "from": "address:owner",
+//                 "to" : "address:todo_contract",
+//                 "value": "0",
+//                 "function": "set_todo",
+//                 "arguments": [
+//                     "2",
+//                     "str:Second Todo"
+//                 ],
+//                 "gasLimit": "1,000,000",
+//                 "gasPrice": "0"
+//             },
+//             "expect": {
+//                 "status": "",
+//                 "gas": "*",
+//                 "refund": "*"
+//             }
+//         },
+//         {
+//             "step": "scCall",
+//             "txId": "calling",
+//             "tx": {
+//                 "from": "address:owner",
+//                 "to" : "address:todo_contract",
+//                 "value": "0",
+//                 "function": "getTodos",
+//                 "arguments": [
+//                     "2"
+//                 ],
+//                 "gasLimit": "1,000,000",
+//                 "gasPrice": "0"
+//             },
+//             "expect": {
+//                 "out":["''Second Todo"],
+//                 "status": "",
+//                 "gas": "*",
+//                 "refund": "*"
+//             }
+//         },
+//         {
+//             "step": "checkState",
+//             "accounts": {
+//                 "address:owner": {
+//                     "nonce": "4",
+//                     "balance": "10,000,000",
+//                     "storage": {}
+//                 },
+//                 "address:todo_contract": {
+//                     "nonce": "0",
+//                     "balance": "0",
+//                     "storage": {
+//                         "''todo|u16:1": "''Run Test",
+//                         "''todo|u16:2": "''Second Todo"
+//                     },
+//                     "code": "file:../output/todo.wasm"
+//                 }
+//             }
+//         }
+        
+        
+//     ]
+// }

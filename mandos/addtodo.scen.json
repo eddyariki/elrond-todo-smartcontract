@@ -44,10 +44,10 @@
                 "from": "address:owner",
                 "to" : "address:todo_contract",
                 "value": "0",
-                "function": "set_todo",
+                "function": "addTask",
                 "arguments": [
                     "1",
-                    "str:Run Test"
+                    "str:Add First Task"
                 ],
                 "gasLimit": "1,000,000",
                 "gasPrice": "0"
@@ -59,24 +59,90 @@
             }
         },
         {
-            "step": "checkState",
-            "accounts": {
-                "address:owner": {
-                    "nonce": "2",
-                    "balance": "10,000,000",
-                    "storage": {}
-                },
-                "address:todo_contract": {
-                    "nonce": "0",
-                    "balance": "0",
-                    "storage": {
-                        "''todo|u16:1": "''Run Test"
-                    },
-                    "code": "file:../output/todo.wasm"
-                }
+            "step": "scCall",
+            "txId": "calling",
+            "tx": {
+                "from": "address:owner",
+                "to" : "address:todo_contract",
+                "value": "0",
+                "function": "getTaskStatus",
+                "arguments": [
+                    "1"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "comment": "expecting false",
+            "expect": {
+                "out":["0x"],
+                "status": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "calling",
+            "tx": {
+                "from": "address:owner",
+                "to" : "address:todo_contract",
+                "value": "0",
+                "function": "getTaskContent",
+                "arguments": [
+                    "1"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "out":["str:Add First Task"],
+                "status": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "calling",
+            "tx": {
+                "from": "address:owner",
+                "to" : "address:todo_contract",
+                "value": "0",
+                "function": "checkTask",
+                "arguments": [
+                    "1"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "comment": "expecting false",
+            "expect": {
+                "status": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "scCall",
+            "txId": "calling",
+            "tx": {
+                "from": "address:owner",
+                "to" : "address:todo_contract",
+                "value": "0",
+                "function": "getTaskStatus",
+                "arguments": [
+                    "1"
+                ],
+                "gasLimit": "1,000,000",
+                "gasPrice": "0"
+            },
+            "comment": "expecting true",
+            "expect": {
+                "out":["0x01"],
+                "status": "",
+                "gas": "*",
+                "refund": "*"
             }
         }
-        
-        
     ]
 }
